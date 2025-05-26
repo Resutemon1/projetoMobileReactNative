@@ -7,7 +7,7 @@ export default function Menu({navigation}) {
     if(!user){
       navigation.reset({
         index: 0,
-        routes:[{name:'Inicial'}]
+        routes:[{name:'tela-inicial'}]
       }
 
       )

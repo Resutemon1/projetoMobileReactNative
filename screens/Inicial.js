@@ -62,7 +62,7 @@ export default function Inicial({ navigation }) {
       placeholder = 'senha'
       value = {senha}
       secureTextEntry = {true}
-      keyboardType="number-pad"
+      keyboardType="default"
       onChangeText ={(e)=>setSenha(e)}
          
       />
