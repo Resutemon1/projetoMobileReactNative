@@ -2,16 +2,56 @@
 import { Text, StyleSheet, SafeAreaView, Pressable, ImageBackground, Alert ,TextInput,View,Button} from 'react-native';
 import { estilo } from '../assets/Estilo';
 import{useState} from 'react'
+import {auth} from '../FirebaseConfig'
+import { signInWithEmailAndPassword ,createUserWithEmailAndPassword} from 'firebase/auth';
 export default function Inicial({ navigation }) {
-  const [nome,setNome] = useState(0)
-  const [senha,setSenha] = useState(0)
+  const [nome,setNome] = useState('');
+  const [senha,setSenha] = useState('');
+  const handleLogin = async ()=>{
+    if(!nome.includes('@')||senha.length< 6){
+      Alert.alert('login invalido');
+      alert('login invalido');
+    }
+    else{
+      try{
+        const user = await signInWithEmailAndPassword(auth,nome,senha)
+        if(user){
+          navigation.replace('menu');
+        }
+       
+      }catch(error){
+        console.log(error)
+        alert('erro ao realizar o login: '+ error.message);
+      }
+    }
+  }
+   const handleCreate = async ()=>{
+    if(!nome.includes('@')||senha.length< 6){
+      Alert.alert('login invalido');
+      alert('login invalido');
+    }
+    else{
+      try{
+        const user = await createUserWithEmailAndPassword(auth,nome,senha)
+        if(user){
+          navigation.replace('menu');
+        }
+       
+      }catch(error){
+        console.log(error)
+        alert('erro ao realizar o login: '+ error.message);
+      }
+    }
+  }
+
+  }
   return (
     <SafeAreaView style={{ flex: 1 }}>
 
       <View style={estilo.formulario}>
       <TextInput
       style={estilo.input}
-      placeholder = 'nome'
+      placeholder = 'email'
       value = {nome}
       keyboardType="default"
       onChangeText ={(e)=>setNome(e)}
@@ -30,12 +70,7 @@ export default function Inicial({ navigation }) {
           title="logar"
           
           onPress={() => {
-            if(nome==="caio"&& senha==="123"){
-              navigation.replace('menu')
-            }
-            else{
-              Alert.alert("login errado")
-            }
+            handleLogin()
           }}
         />
 

@@ -1,6 +1,21 @@
 import { Text, View, StyleSheet,SafeAreaView, Image,Button,Pressable ,ImageBackground} from 'react-native';
 import{estilo} from '../assets/Estilo'
+import {auth} from '../FirebaseConfig'
+import { getAuth } from 'firebase/auth';
 export default function Menu({navigation}) {
+  getAuth().onAuthStateChanged((user)=>{
+    if(!user){
+      navigation.reset({
+        index: 0,
+        routes:[{name:'Inicial'}]
+      }
+
+      )
+    }
+  })
+  const handleLogout = async() =>{
+    auth.signOut()
+  };
   return (
     <SafeAreaView style={{flex: 1}}> 
   
@@ -12,7 +27,9 @@ export default function Menu({navigation}) {
       <Button
           title="deslogar"
           
-          onPress={() => navigation.replace('tela-inicial')}
+          onPress={() => {
+            handleLogout()
+          }}
         />
     </SafeAreaView>
   );
