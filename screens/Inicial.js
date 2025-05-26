@@ -44,7 +44,7 @@ export default function Inicial({ navigation }) {
     }
   }
 
-  }
+  
   return (
     <SafeAreaView style={{ flex: 1 }}>
 
