@@ -1,12 +1,21 @@
 
-import { Text, StyleSheet, SafeAreaView, Pressable, ImageBackground, Alert ,TextInput,View,Button} from 'react-native';
+import { Text, StyleSheet, SafeAreaView, Pressable, ImageBackground,Modal,TouchableOpacity, Alert ,TextInput,View,Button} from 'react-native';
 import { estilo } from '../assets/Estilo';
-import{useState} from 'react'
+import{useEffect, useState} from 'react'
 import {auth} from '../FirebaseConfig'
-import { signInWithEmailAndPassword ,createUserWithEmailAndPassword} from 'firebase/auth';
+import { signInWithEmailAndPassword ,createUserWithEmailAndPassword, onAuthStateChanged} from 'firebase/auth';
 export default function Inicial({ navigation }) {
   const [nome,setNome] = useState('');
   const [senha,setSenha] = useState('');
+  const [modalVisible, setModalVisible] = useState(false);
+  useEffect(()=>{
+    const checkLogin =  onAuthStateChanged(auth,(user)=>{
+      if(user){
+        navigation.replace('menu')
+      }
+    });
+    return checkLogin;
+  },[])
   const handleLogin = async ()=>{
     if(!nome.includes('@')||senha.length< 6){
       Alert.alert('login invalido');
@@ -34,6 +43,7 @@ export default function Inicial({ navigation }) {
       try{
         const user = await createUserWithEmailAndPassword(auth,nome,senha)
         if(user){
+          setModalVisible(false);
           navigation.replace('menu');
         }
        
@@ -53,7 +63,7 @@ export default function Inicial({ navigation }) {
       style={estilo.input}
       placeholder = 'email'
       value = {nome}
-      keyboardType="default"
+      keyboardType="email-address"
       onChangeText ={(e)=>setNome(e)}
       />
      
@@ -73,9 +83,45 @@ export default function Inicial({ navigation }) {
             handleLogin()
           }}
         />
-
+         <Button title="Criar Conta" onPress={() => setModalVisible(true)} />
+    
       
     </View>
+    <Modal
+  animationType="slide"
+  transparent={true}
+  visible={modalVisible}
+  onRequestClose={() => setModalVisible(false)}
+>
+  <View style={estilo.modalOverlay}>
+    <View style={estilo.modalContainer}>
+      <Text style={estilo.modalTitle}>Criar Conta</Text>
+
+      <TextInput
+        placeholder="Email"
+        style={estilo.input}
+        value={nome}
+        onChangeText={setNome}
+        keyboardType="email-address"
+        autoCapitalize="none"
+      />
+
+      <TextInput
+        placeholder="Senha"
+        style={estilo.input}
+        value={senha}
+        onChangeText={setSenha}
+        secureTextEntry
+      />
+
+      <Button title="Cadastrar" onPress={handleCreate} />
+
+      <TouchableOpacity onPress={() => setModalVisible(false)}>
+        <Text style={estilo.fecharTexto}>Fechar</Text>
+      </TouchableOpacity>
+    </View>
+  </View>
+</Modal>
     </SafeAreaView>
   );
 }
