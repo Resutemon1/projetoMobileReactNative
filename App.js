@@ -8,22 +8,28 @@ import Persona from './screens/Persona'
 import Warframe from './screens/Warframe'
 import Metaphor from './screens/Metaphor'
 import Balatro from './screens/Balatro'
+import { AuthProvider } from './context/AuthProvider'
 import { estilo } from './assets/Estilo';
 export default function App() {
   const Stack = createNativeStackNavigator();
 
   return (
+     <AuthProvider>
     <NavigationContainer>
       <Stack.Navigator 
+      
       >
         <Stack.Screen
          name="tela-inicial"
-          component={Inicial} />
+         o
+         component={Inicial} />
         <Stack.Screen
          name="menu" 
+        
          component={BottomTabNav} />
          <Stack.Screen
          name="persona" 
+         
          component={Persona} />
          <Stack.Screen
          name="warframe" 
@@ -36,5 +42,6 @@ export default function App() {
          component={Metaphor} />
       </Stack.Navigator>
     </NavigationContainer>
+    </AuthProvider>
   );
 }

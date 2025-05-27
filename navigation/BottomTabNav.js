@@ -21,6 +21,8 @@ export default function BottomTabNav() {
           },
           tabBarActiveTintColor: 'tomato',
           tabBarInactiveTintColor: 'gray',
+          headerShown: false,
+         
         })}
       >
         <BottomTab.Screen

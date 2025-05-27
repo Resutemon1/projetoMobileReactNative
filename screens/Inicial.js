@@ -5,7 +5,7 @@ import{useEffect, useState} from 'react'
 import {auth} from '../FirebaseConfig'
 import { signInWithEmailAndPassword ,createUserWithEmailAndPassword, onAuthStateChanged} from 'firebase/auth';
 export default function Inicial({ navigation }) {
-  const [nome,setNome] = useState('');
+  const [email,setEmail] = useState('');
   const [senha,setSenha] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
   useEffect(()=>{
@@ -17,13 +17,13 @@ export default function Inicial({ navigation }) {
     return checkLogin;
   },[])
   const handleLogin = async ()=>{
-    if(!nome.includes('@')||senha.length< 6){
+    if(!email.includes('@')||senha.length< 6){
       Alert.alert('login invalido');
       alert('login invalido');
     }
     else{
       try{
-        const user = await signInWithEmailAndPassword(auth,nome,senha)
+        const user = await signInWithEmailAndPassword(auth,email,senha)
         if(user){
           navigation.replace('menu');
         }
@@ -35,13 +35,13 @@ export default function Inicial({ navigation }) {
     }
   }
    const handleCreate = async ()=>{
-    if(!nome.includes('@')||senha.length< 6){
+    if(!email.includes('@')||senha.length< 6){
       Alert.alert('login invalido');
       alert('login invalido');
     }
     else{
       try{
-        const user = await createUserWithEmailAndPassword(auth,nome,senha)
+        const user = await createUserWithEmailAndPassword(auth,email,senha)
         if(user){
           setModalVisible(false);
           navigation.replace('menu');
@@ -62,9 +62,9 @@ export default function Inicial({ navigation }) {
       <TextInput
       style={estilo.input}
       placeholder = 'email'
-      value = {nome}
+      value = {email}
       keyboardType="email-address"
-      onChangeText ={(e)=>setNome(e)}
+      onChangeText ={(e)=>setEmail(e)}
       />
      
       <TextInput
@@ -100,8 +100,8 @@ export default function Inicial({ navigation }) {
       <TextInput
         placeholder="Email"
         style={estilo.input}
-        value={nome}
-        onChangeText={setNome}
+        value={email}
+        onChangeText={setEmail}
         keyboardType="email-address"
         autoCapitalize="none"
       />
