@@ -4,7 +4,6 @@ import { Text, SafeAreaView, StyleSheet , View} from 'react-native';
 export const estilo = StyleSheet.create({
   header:{
       flex: 0.1,
-      backgroundColor: 'red',
       justifyContent:'center',
       alignItems: 'center'
   },
@@ -76,4 +75,13 @@ export const estilo = StyleSheet.create({
     textAlign: 'center',
     color: 'blue',
   },
+  layoutImage:{
+    flex:0.9,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    padding: 5,
+    backgroundColor:'green',
+    justifyContent:'center',
+    alignSelf:'center'
+  }
 });
