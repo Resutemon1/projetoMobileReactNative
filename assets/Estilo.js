@@ -76,12 +76,11 @@ export const estilo = StyleSheet.create({
     color: 'blue',
   },
   layoutImage:{
-    flex:0.9,
     flexDirection: 'row',
     flexWrap: 'wrap',
     padding: 5,
     backgroundColor:'green',
     justifyContent:'center',
-    alignSelf:'center'
+    alignItems: 'center'
   }
 });
