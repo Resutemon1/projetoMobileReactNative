@@ -1,14 +1,16 @@
 import { Text, View, StyleSheet, SafeAreaView, Image, Button, Pressable, ImageBackground, TouchableOpacity } from 'react-native';
 import { estilo } from '../assets/Estilo'
+import {collection,getDocs,setDocs,doc} from 'firebase/firestore'
+import {db} from '../FirebaseConfig'
 import { auth } from '../FirebaseConfig'
 import { getAuth } from 'firebase/auth';
 import { useAuth } from '../context/useAuth'
 import { TextInput } from 'react-native-web';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import Header from '../components/Header';
 export default function Menu({ navigation }) {
   const { user, setUser } = useAuth();
-  const { salario, setSalario } = useState();
+ 
   getAuth().onAuthStateChanged((user) => {
     if (!user) {
       navigation.reset({
@@ -24,6 +26,24 @@ export default function Menu({ navigation }) {
   };
   const handleModal = () => {
 
+  };
+  useEffect(()=>{
+    carregarDados();
+  },[]);
+  const carregarDados = async ()=>{
+    try{
+      const querySnapshot = await getDocs(collection(db,'categorias'));
+      const categorias = [];
+      querySnapshot.forEach((doc)=>{
+        categorias.push({
+          categoria: doc.id,
+          data: doc.data().data,
+        });
+      });
+      setData(categorias);
+    } catch (error){
+      console.error('Erro ao carregar dados:',error)
+    }
   };
   return (
     <SafeAreaView style={{ flex: 1 }}>
