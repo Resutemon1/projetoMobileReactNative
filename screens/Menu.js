@@ -8,21 +8,24 @@ import { useAuth } from '../context/useAuth'
 import { TextInput } from 'react-native-web';
 import { useState,useEffect } from 'react';
 import Header from '../components/Header';
+import ModalCadastro from '../components/ModalCadastro'
 export default function Menu({ navigation }) {
-  const { user, setUser } = useAuth();
- const [data,setData] = useState('');
-  getAuth().onAuthStateChanged((user) => {
-    if (!user) {
-      navigation.reset({
-        index: 0,
-        routes: [{ name: 'tela-inicial' }]
-      }
+const { user, setUser } = useAuth();
+const [data,setData] = useState('');
+const [modalVisible, setModalVisible] = useState(false);
+const [tipoSelecionado, setTipoSelecionado] = useState(null);
 
-      )
-    }
-  })
+const abrirModal = (tipo) => {
+  setTipoSelecionado(tipo);
+  setModalVisible(true);
+};
+
   const handleLogout = async () => {
     auth.signOut()
+    navigation.reset({
+      index: 0,
+      routes:[{name:'tela-inicial'}]
+    })
   };
   const handleModal = () => {
 
@@ -37,7 +40,7 @@ export default function Menu({ navigation }) {
       querySnapshot.forEach((doc)=>{
         categorias.push({
           categoria: doc.id,
-          data: doc.data().data,
+          data: doc.data(),
         });
       });
       setData(categorias);
@@ -48,21 +51,25 @@ export default function Menu({ navigation }) {
   return (
     <SafeAreaView style={estilo.container}>
       <Header />
-
+      <ModalCadastro
+        visible={modalVisible}
+        onClose={() => setModalVisible(false)}
+         tipo={tipoSelecionado}
+      />
       <View style={estilo.viewMenu}>
         <TouchableOpacity 
         style = {
-          estilo.layoutImage}onPress={() => { handleModal() }}>
+          estilo.layoutImage}onPress={() => abrirModal('salario')}>
 
           <Image
             style={estilo.imagem}
             source={{ uri: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1687950/capsule_616x353.jpg?t=1733297467' }}
           />
 
-          <Text >colocar salario</Text>
+          <Text >salario</Text>
         </TouchableOpacity>
         <TouchableOpacity   style = {
-          estilo.layoutImage} onPress={() => { handleModal() }}>
+          estilo.layoutImage} onPress={() => abrirModal('conta')}>
 
           <Image
             style={estilo.imagem}
@@ -73,24 +80,24 @@ export default function Menu({ navigation }) {
         </TouchableOpacity>
 
         <TouchableOpacity  style = {
-          estilo.layoutImage} onPress={() => { handleModal() }}>
+          estilo.layoutImage} onPress={() => abrirModal('emprestimo')}>
 
           <Image
             style={estilo.imagem}
             source={{ uri: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1687950/capsule_616x353.jpg?t=1733297467' }}
           />
 
-          <Text>adicionar emprestimo</Text>
+          <Text> emprestimo</Text>
         </TouchableOpacity>
         <TouchableOpacity style = {
-          estilo.layoutImage} onPress={() => { handleModal() }}>
+          estilo.layoutImage}onPress={() => abrirModal('investimento')}>
 
           <Image
             style={estilo.imagem}
             source={{ uri: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1687950/capsule_616x353.jpg?t=1733297467' }}
           />
 
-          <Text>adicionar investimento</Text>
+          <Text>investimento</Text>
         </TouchableOpacity>
       </View>
       <Button
