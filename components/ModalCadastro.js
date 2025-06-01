@@ -29,6 +29,9 @@ export default function ModalCadastro({ visible, onClose, tipo }) {
             <TextInput placeholder="Data de vencimento"
             placeholderTextColor="black"
              style={estilo.input} />
+             <TextInput placeholder="parcelas"
+            placeholderTextColor="black"
+             style={estilo.input} />
           </>
         );
       case 'emprestimo':

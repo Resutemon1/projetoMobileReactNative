@@ -6,7 +6,8 @@ export default function Header() {
   const { user, setUser } = useAuth();
   return (
     <View style={estilo.header}>
-         <Text style={estilo.subtitulo}>Bem vindo {user?.email}</Text>
+         <Text style={estilo.subtitulo}>Bem vindo: </Text>
+         <Text style = {estilo.subtitulo}>  {user?.email}    </Text>
     </View>
   );
 }

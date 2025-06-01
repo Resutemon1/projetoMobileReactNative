@@ -76,7 +76,7 @@ const abrirModal = (tipo) => {
             source={{ uri: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1687950/capsule_616x353.jpg?t=1733297467' }}
           />
 
-          <Text>adicionar conta a pagar</Text>
+          <Text>conta</Text>
         </TouchableOpacity>
 
         <TouchableOpacity  style = {

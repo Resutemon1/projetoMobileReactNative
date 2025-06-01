@@ -8,7 +8,7 @@ export const estilo = StyleSheet.create({
     backgroundColor: '#f5f5f5',
   },
   header: {
-    flex: 0.1,
+    flex: 0.18,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -32,7 +32,9 @@ export const estilo = StyleSheet.create({
     alignItems: 'center',
   },
   subtitulo: {
-    fontSize: 20,
+    marginTop: 11,
+    marginBottom:2,
+    fontSize: 15,
   },
   formulario: {
     flex: 0.8,
