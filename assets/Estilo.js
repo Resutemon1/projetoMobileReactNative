@@ -1,40 +1,47 @@
-
-import { Text, SafeAreaView, StyleSheet , View} from 'react-native';
+import { StyleSheet } from 'react-native';
 
 export const estilo = StyleSheet.create({
-  header:{
-      flex: 0.1,
-      justifyContent:'center',
-      alignItems: 'center'
+  container: {
+    flex: 1,
+    paddingTop: 80,
+    alignItems: 'center',
+    backgroundColor: '#f5f5f5',
   },
-  footer:{
-    flex: 0.1, backgroundColor: 'yellow',justifyContent:'center',alignItems: 'center'
+  header: {
+    flex: 0.1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  main:{
-     flex: 0.8,justifyContent:'center',alignItems: 'center'
+  footer: {
+    flex: 0.1,
+    backgroundColor: 'yellow',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  titulo:{
-    fontSize:40
-      },
-  scrollview:
-  {
-        
-        
+  main: {
+    flex: 0.8,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  pressable:{
-      justifyContent:'center',alignItems: 'center'
+  titulo: {
+    fontSize: 40,
   },
-  subtitulo:{
-      fontSize:20
+  scrollview: {},
+  pressable: {
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  formulario:{
-       flex:0.8,
-       justifyContent:'center',
-       alignItems: 'center',
-       fontSize:40,
+  subtitulo: {
+    fontSize: 20,
   },
-  image:{
-      flex: 1,
+  formulario: {
+    flex: 0.8,
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontSize: 40,
+  },
+  image: {
+    flex: 1,
     justifyContent: 'center',
   },
   input: {
@@ -43,15 +50,15 @@ export const estilo = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
   },
-  text:{
-      color: '#fcf5fa',
+  text: {
+    color: '#fcf5fa',
     fontSize: 42,
     lineHeight: 84,
     fontWeight: 'bold',
     textAlign: 'center',
     backgroundColor: 'transparent',
   },
-    modalOverlay: {
+  modalOverlay: {
     flex: 1,
     backgroundColor: 'rgba(0,0,0,0.4)',
     justifyContent: 'center',
@@ -75,12 +82,24 @@ export const estilo = StyleSheet.create({
     textAlign: 'center',
     color: 'blue',
   },
-  layoutImage:{
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    padding: 5,
-    backgroundColor:'green',
-    justifyContent:'center',
-    alignItems: 'center'
-  }
+
+viewMenu: {
+  flexDirection: 'row',
+  flexWrap: 'wrap',
+  justifyContent: 'center',
+  paddingHorizontal: 10,
+  marginTop: 30,
+},
+layoutImage: {
+  backgroundColor: '#1976D2',
+  width: 140,
+  height: 140,
+  justifyContent: 'center',
+  alignItems: 'center',
+  margin: 10,
+  borderRadius: 10,
+},
+imagem:{
+  height: 75, width: 140, resizeMode: 'contain'
+}
 });

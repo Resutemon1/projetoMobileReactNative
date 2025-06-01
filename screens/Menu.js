@@ -10,7 +10,7 @@ import { useState,useEffect } from 'react';
 import Header from '../components/Header';
 export default function Menu({ navigation }) {
   const { user, setUser } = useAuth();
- 
+ const [data,setData] = useState('');
   getAuth().onAuthStateChanged((user) => {
     if (!user) {
       navigation.reset({
@@ -46,42 +46,47 @@ export default function Menu({ navigation }) {
     }
   };
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={estilo.container}>
       <Header />
 
-      <View style={estilo.layoutImage}>
-        <TouchableOpacity onPress={() => { handleModal() }}>
+      <View style={estilo.viewMenu}>
+        <TouchableOpacity 
+        style = {
+          estilo.layoutImage}onPress={() => { handleModal() }}>
 
           <Image
-            style={{ height: 125, width: 200, resizeMode: 'contain', padding: 5 }}
+            style={estilo.imagem}
             source={{ uri: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1687950/capsule_616x353.jpg?t=1733297467' }}
           />
 
-          <Text>colocar salario</Text>
+          <Text >colocar salario</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => { handleModal() }}>
+        <TouchableOpacity   style = {
+          estilo.layoutImage} onPress={() => { handleModal() }}>
 
           <Image
-            style={{ height: 125, width: 200, resizeMode: 'contain', padding: 5 }}
+            style={estilo.imagem}
             source={{ uri: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1687950/capsule_616x353.jpg?t=1733297467' }}
           />
 
           <Text>adicionar conta a pagar</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => { handleModal() }}>
+        <TouchableOpacity  style = {
+          estilo.layoutImage} onPress={() => { handleModal() }}>
 
           <Image
-            style={{ height: 125, width: 200, resizeMode: 'contain', padding: 5 }}
+            style={estilo.imagem}
             source={{ uri: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1687950/capsule_616x353.jpg?t=1733297467' }}
           />
 
           <Text>adicionar emprestimo</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => { handleModal() }}>
+        <TouchableOpacity style = {
+          estilo.layoutImage} onPress={() => { handleModal() }}>
 
           <Image
-            style={{ height: 125, width: 200, resizeMode: 'contain', padding: 5 }}
+            style={estilo.imagem}
             source={{ uri: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1687950/capsule_616x353.jpg?t=1733297467' }}
           />
 
