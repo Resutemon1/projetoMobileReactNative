@@ -18,7 +18,6 @@ const [contas, setContas] = useState([]);
 const [emprestimos, setEmprestimos] = useState([]);
 const [investimentos, setInvestimentos] = useState([]);
 useEffect(() => {
-   
     const unsubscribe = auth.onAuthStateChanged(user => {
       if (!user) {
         navigation.reset({
@@ -34,7 +33,6 @@ const abrirModal = (tipo) => {
   setTipoSelecionado(tipo);
   setModalVisible(true);
 };
-
   const handleLogout = async () => {
     auth.signOut()
     navigation.reset({
@@ -42,15 +40,12 @@ const abrirModal = (tipo) => {
       routes:[{name:'tela-inicial'}]
     })
   };
-
-
 useEffect(() => {
   carregarSalarios();
   carregarContas();
   carregarEmprestimos();
   carregarInvestimentos();
 }, []);
-
 const carregarSalarios = async () => {
   try {
     const uid = auth.currentUser?.uid;
@@ -67,7 +62,6 @@ const carregarSalarios = async () => {
     console.error('Erro ao carregar salários:', error);
   }
 };
-
 const carregarContas = async () => {
   try {
     const uid = auth.currentUser?.uid;
@@ -84,7 +78,6 @@ const carregarContas = async () => {
     console.error('Erro ao carregar contas:', error);
   }
 };
-
 const carregarEmprestimos = async () => {
   try {
     const uid = auth.currentUser?.uid;
@@ -131,49 +124,39 @@ const carregarInvestimentos = async () => {
         <TouchableOpacity 
         style = {
           estilo.layoutImage}onPress={() => abrirModal('salario')}>
-
           <Image
             style={estilo.imagem}
             source={{ uri: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1687950/capsule_616x353.jpg?t=1733297467' }}
           />
-
           <Text >salario</Text>
         </TouchableOpacity>
         <TouchableOpacity   style = {
           estilo.layoutImage} onPress={() => abrirModal('conta')}>
-
           <Image
             style={estilo.imagem}
             source={{ uri: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1687950/capsule_616x353.jpg?t=1733297467' }}
           />
-
           <Text>conta</Text>
         </TouchableOpacity>
-
         <TouchableOpacity  style = {
           estilo.layoutImage} onPress={() => abrirModal('emprestimo')}>
-
           <Image
             style={estilo.imagem}
             source={{ uri: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1687950/capsule_616x353.jpg?t=1733297467' }}
           />
-
           <Text> emprestimo</Text>
         </TouchableOpacity>
         <TouchableOpacity style = {
           estilo.layoutImage}onPress={() => abrirModal('investimento')}>
-
           <Image
             style={estilo.imagem}
             source={{ uri: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1687950/capsule_616x353.jpg?t=1733297467' }}
           />
-
           <Text>investimento</Text>
         </TouchableOpacity>
       </View>
       <Button
         title="deslogar"
-
         onPress={() => {
           handleLogout()
         }}
