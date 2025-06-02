@@ -5,18 +5,20 @@ import {db} from '../FirebaseConfig'
 import { auth } from '../FirebaseConfig'
 import { getAuth } from 'firebase/auth';
 import { useAuth } from '../context/useAuth'
-import { TextInput } from 'react-native-web';
 import { useState,useEffect } from 'react';
 import Header from '../components/Header';
 import ModalCadastro from '../components/ModalCadastro'
 export default function Menu({ navigation }) {
 const { user, setUser } = useAuth();
-const [data,setData] = useState('');
+const [data, setData] = useState([]);
 const [modalVisible, setModalVisible] = useState(false);
 const [tipoSelecionado, setTipoSelecionado] = useState(null);
+const [salarios, setSalarios] = useState([]);
+const [contas, setContas] = useState([]);
+const [emprestimos, setEmprestimos] = useState([]);
+const [investimentos, setInvestimentos] = useState([]);
 useEffect(() => {
-    const auth = getAuth();
-
+   
     const unsubscribe = auth.onAuthStateChanged(user => {
       if (!user) {
         navigation.reset({
@@ -40,27 +42,83 @@ const abrirModal = (tipo) => {
       routes:[{name:'tela-inicial'}]
     })
   };
-  const handleModal = () => {
 
-  };
-  useEffect(()=>{
-    carregarDados();
-  },[]);
-  const carregarDados = async ()=>{
-    try{
-      const querySnapshot = await getDocs(collection(db,'categorias'));
-      const categorias = [];
-      querySnapshot.forEach((doc)=>{
-        categorias.push({
-          categoria: doc.id,
-          data: doc.data(),
-        });
-      });
-      setData(categorias);
-    } catch (error){
-      console.error('Erro ao carregar dados:',error)
-    }
-  };
+
+useEffect(() => {
+  carregarSalarios();
+  carregarContas();
+  carregarEmprestimos();
+  carregarInvestimentos();
+}, []);
+
+const carregarSalarios = async () => {
+  try {
+    const uid = auth.currentUser?.uid;
+    const querySnapshot = await getDocs(collection(db, 'salario'));
+    const dados = [];
+    querySnapshot.forEach((doc) => {
+      const data = doc.data();
+      if (data.usuarioId === uid) {
+        dados.push({ id: doc.id, ...data });
+      }
+    });
+    setSalarios(dados);
+  } catch (error) {
+    console.error('Erro ao carregar salários:', error);
+  }
+};
+
+const carregarContas = async () => {
+  try {
+    const uid = auth.currentUser?.uid;
+    const querySnapshot = await getDocs(collection(db, 'conta'));
+    const dados = [];
+    querySnapshot.forEach((doc) => {
+      const data = doc.data();
+      if (data.usuarioId === uid) {
+        dados.push({ id: doc.id, ...data });
+      }
+    });
+    setContas(dados);
+  } catch (error) {
+    console.error('Erro ao carregar contas:', error);
+  }
+};
+
+const carregarEmprestimos = async () => {
+  try {
+    const uid = auth.currentUser?.uid;
+    const querySnapshot = await getDocs(collection(db, 'emprestimo'));
+    const dados = [];
+    querySnapshot.forEach((doc) => {
+      const data = doc.data();
+      if (data.usuarioId === uid) {
+        dados.push({ id: doc.id, ...data });
+      }
+    });
+    setEmprestimos(dados);
+  } catch (error) {
+    console.error('Erro ao carregar empréstimos:', error);
+  }
+};
+
+const carregarInvestimentos = async () => {
+  try {
+    const uid = auth.currentUser?.uid;
+    const querySnapshot = await getDocs(collection(db, 'investimento'));
+    const dados = [];
+    querySnapshot.forEach((doc) => {
+      const data = doc.data();
+      if (data.usuarioId === uid) {
+        dados.push({ id: doc.id, ...data });
+      }
+    });
+    setInvestimentos(dados);
+  } catch (error) {
+    console.error('Erro ao carregar investimentos:', error);
+  }
+};
+
   return (
     <SafeAreaView style={estilo.container}>
       <Header />
