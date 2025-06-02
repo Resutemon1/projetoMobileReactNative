@@ -14,7 +14,20 @@ const { user, setUser } = useAuth();
 const [data,setData] = useState('');
 const [modalVisible, setModalVisible] = useState(false);
 const [tipoSelecionado, setTipoSelecionado] = useState(null);
+useEffect(() => {
+    const auth = getAuth();
 
+    const unsubscribe = auth.onAuthStateChanged(user => {
+      if (!user) {
+        navigation.reset({
+          index: 0,
+          routes: [{ name: 'tela-inicial' }],
+        });
+      }
+    });
+
+    return () => unsubscribe(); // limpa o listener ao sair da tela
+  }, []);
 const abrirModal = (tipo) => {
   setTipoSelecionado(tipo);
   setModalVisible(true);
