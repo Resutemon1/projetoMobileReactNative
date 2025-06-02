@@ -81,7 +81,7 @@ export const estilo = StyleSheet.create({
     textAlign: 'center',
   },
   fecharTexto: {
-    marginTop: 15,
+    marginTop: 10,
     textAlign: 'center',
     color: 'blue',
   },
