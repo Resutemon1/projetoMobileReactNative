@@ -3,6 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Menu from '../screens/Menu'
 import Ex1 from '../screens/Ex1';
+import Gastos from'../screens/Gastos';
 export default function BottomTabNav() {
 
   const BottomTab = createBottomTabNavigator();
@@ -17,6 +18,9 @@ export default function BottomTabNav() {
             } else if (route.name === 'ex1') {
               iconName = focused ? 'list' : 'list-outline';
             }
+            else if (route.name === 'gastos') {
+              iconName = focused ? 'list' : 'list-outline';
+            }
             return <Icon name={iconName} size={size} color={color} />;
           },
           tabBarActiveTintColor: 'tomato',
@@ -29,6 +33,9 @@ export default function BottomTabNav() {
          name="menu"
           component={Menu} />
         <BottomTab.Screen
+         name="gastos" 
+         component={Gastos} />
+         <BottomTab.Screen
          name="ex1" 
          component={Ex1} />
       </BottomTab.Navigator>
