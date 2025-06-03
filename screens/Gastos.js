@@ -18,14 +18,7 @@ export default function Gastos({ navigation }) {
   const [tipoSelecionado, setTipoSelecionado] = useState(null);
   const [modalEditarVisible, setModalEditarVisible] = useState(false);
   const [contaSelecionada, setContaSelecionada] = useState(null);
-useFocusEffect(
-  useCallback(() => {
-    carregarSalarios();
-    carregarContas();
-    carregarEmprestimos();
-    carregarInvestimentos();
-  }, [carregarSalarios, carregarContas, carregarEmprestimos, carregarInvestimentos])
-);
+
 
  const carregarSalarios = useCallback(async () => {
   try {
@@ -92,6 +85,14 @@ const carregarInvestimentos = useCallback(async () => {
     console.error('Erro ao carregar investimentos:', error);
   }
 }, []);
+useFocusEffect(
+  useCallback(() => {
+    carregarSalarios();
+    carregarContas();
+    carregarEmprestimos();
+    carregarInvestimentos();
+  }, [carregarSalarios, carregarContas, carregarEmprestimos, carregarInvestimentos])
+);
  const handleDeletar = async (id) => {
   try{
     const ref = doc(db,'conta',id);
