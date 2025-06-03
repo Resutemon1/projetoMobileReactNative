@@ -86,8 +86,8 @@ const carregarInvestimentos = useCallback(async () => {
     console.error('Erro ao carregar investimentos:', error);
   }
 }, []);
-const handleDeletar = (id) => {
-    
+ const handleDeletar = async (id) => {
+    await firestore().collection('dicas_pets').doc(id).delete();
   };
 const handleEditar = (id) => {
     
