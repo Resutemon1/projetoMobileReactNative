@@ -2,7 +2,6 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Menu from '../screens/Menu'
-import Ex1 from '../screens/Ex1';
 import Gastos from'../screens/Gastos';
 export default function BottomTabNav() {
 
@@ -15,8 +14,6 @@ export default function BottomTabNav() {
             let iconName;
             if (route.name === 'menu') {
               iconName = focused ? 'home' : 'home-outline';
-            } else if (route.name === 'ex1') {
-              iconName = focused ? 'list' : 'list-outline';
             }
             else if (route.name === 'gastos') {
               iconName = focused ? 'list' : 'list-outline';
@@ -35,9 +32,7 @@ export default function BottomTabNav() {
         <BottomTab.Screen
          name="gastos" 
          component={Gastos} />
-         <BottomTab.Screen
-         name="ex1" 
-         component={Ex1} />
+         
       </BottomTab.Navigator>
 
   );

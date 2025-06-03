@@ -26,20 +26,10 @@ export const estilo = StyleSheet.create({
   titulo: {
     fontSize: 40,
   },
-  pressable: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   subtitulo: {
     marginTop: 11,
     marginBottom:2,
     fontSize: 15,
-  },
-  formulario: {
-    flex: 0.8,
-    justifyContent: 'center',
-    alignItems: 'center',
-    fontSize: 40,
   },
   image: {
     flex: 1,
@@ -84,27 +74,26 @@ export const estilo = StyleSheet.create({
     textAlign: 'center',
     color: 'blue',
   },
-
-viewMenu: {
-  flexDirection: 'row',
-  flexWrap: 'wrap',
-  justifyContent: 'center',
-  paddingHorizontal: 10,
-  marginTop: 30,
-},
-layoutImage: {
-  backgroundColor: '#1976D2',
-  width: 140,
-  height: 140,
-  justifyContent: 'center',
-  alignItems: 'center',
-  margin: 10,
-  borderRadius: 10,
-},
-imagem:{
-  height: 75, width: 140, resizeMode: 'contain'
-},
-itemContainer: {
+  viewMenu: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    paddingHorizontal: 10,
+    marginTop: 30,
+  },
+  layoutImage: {
+    backgroundColor: '#1976D2',
+    width: 140,
+    height: 140,
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: 10,
+    borderRadius: 10,
+  },
+  imagem:{
+    height: 75, width: 140, resizeMode: 'contain'
+  },
+  itemContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -112,17 +101,17 @@ itemContainer: {
     borderBottomWidth: 1,
     borderBottomColor: '#ccc',
   },
-legendaContainer:{
+  legendaContainer:{
     flexDirection: 'row',
     alignItems: 'center',
     borderBottomWidth: 1,
     borderBottomColor: '#ccc',
-},
-textoFlat: {
+  },
+  textoFlat: {
     fontSize: 14,
     flex:1
   },
-tituloFlat: {
+  tituloFlat: {
     fontSize: 14,
     paddingLeft:15
   },
