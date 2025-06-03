@@ -1,6 +1,6 @@
 import React, { useEffect, useState ,useCallback } from 'react';
 import { SafeAreaView, View, Text, SectionList,FlatList } from 'react-native';
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, deleteDoc, getDocs, doc } from 'firebase/firestore';
 import { useFocusEffect } from '@react-navigation/native';
 import { auth, db } from '../FirebaseConfig';
 import Icon from 'react-native-vector-icons/Feather';
@@ -86,8 +86,14 @@ const carregarInvestimentos = useCallback(async () => {
     console.error('Erro ao carregar investimentos:', error);
   }
 }, []);
- const handleDeletar = async (id) => {
-    await firestore().collection('dicas_pets').doc(id).delete();
+ const handleDeletar = async (doc,id) => {
+  try{
+    const ref = doc(db,'conta',id);
+    await deleteDoc(ref)
+  }catch(error){
+    console.error(error);
+  }
+    
   };
 const handleEditar = (id) => {
     
