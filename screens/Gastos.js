@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState ,useCallback } from 'react';
 import { SafeAreaView, View, Text, SectionList,FlatList } from 'react-native';
 import { collection, getDocs } from 'firebase/firestore';
+import { useFocusEffect } from '@react-navigation/native';
 import { auth, db } from '../FirebaseConfig';
 import Icon from 'react-native-vector-icons/Feather';
 import Header from '../components/Header';
@@ -12,77 +13,80 @@ export default function Gastos({ navigation }) {
   const [contas, setContas] = useState([]);
   const [emprestimos, setEmprestimos] = useState([]);
   const [investimentos, setInvestimentos] = useState([]);
-  useEffect(() => {
+useFocusEffect(
+  useCallback(() => {
     carregarSalarios();
     carregarContas();
     carregarEmprestimos();
     carregarInvestimentos();
-  }, []);
-  const carregarSalarios = async () => {
-    try {
-      const uid = auth.currentUser?.uid;
-      const querySnapshot = await getDocs(collection(db, 'salario'));
-      const dados = [];
-      querySnapshot.forEach(doc => {
-        const data = doc.data();
-        if (data.usuarioId === uid) {
-          dados.push({ id: doc.id, ...data });
-        }
-      });
-      setSalarios(dados);
-    } catch (error) {
-      console.error('Erro ao carregar salários:', error);
-    }
-  };
-  const carregarContas = async () => {
-    try {
-      const uid = auth.currentUser?.uid;
-      const querySnapshot = await getDocs(collection(db, 'conta'));
-      const dados = [];
-      querySnapshot.forEach(doc => {
-        const data = doc.data();
-        if (data.usuarioId === uid) {
-          dados.push({ id: doc.id, ...data });
-        }
-      });
-      setContas(dados);
-    } catch (error) {
-      console.error('Erro ao carregar contas:', error);
-    }
-  };
-  const carregarEmprestimos = async () => {
-    try {
-      const uid = auth.currentUser?.uid;
-      const querySnapshot = await getDocs(collection(db, 'emprestimo'));
-      const dados = [];
-      querySnapshot.forEach(doc => {
-        const data = doc.data();
-        if (data.usuarioId === uid) {
-          dados.push({ id: doc.id, ...data });
-        }
-      });
-      setEmprestimos(dados);
-    } catch (error) {
-      console.error('Erro ao carregar empréstimos:', error);
-    }
-  };
-  const carregarInvestimentos = async () => {
-    try {
-      const uid = auth.currentUser?.uid;
-      const querySnapshot = await getDocs(collection(db, 'investimento'));
-      const dados = [];
-      querySnapshot.forEach(doc => {
-        const data = doc.data();
-        if (data.usuarioId === uid) {
-          dados.push({ id: doc.id, ...data });
-        }
-      });
-      setInvestimentos(dados);
-    } catch (error) {
-      console.error('Erro ao carregar investimentos:', error);
-    }
-  };
-  const handleDeletar = (id) => {
+  }, [carregarSalarios, carregarContas, carregarEmprestimos, carregarInvestimentos])
+);
+ const carregarSalarios = useCallback(async () => {
+  try {
+    const uid = auth.currentUser?.uid;
+    const querySnapshot = await getDocs(collection(db, 'salario'));
+    const dados = [];
+    querySnapshot.forEach((doc) => {
+      const data = doc.data();
+      if (data.usuarioId === uid) {
+        dados.push({ id: doc.id, ...data });
+      }
+    });
+    setSalarios(dados);
+  } catch (error) {
+    console.error('Erro ao carregar salários:', error);
+  }
+}, []);
+
+const carregarContas = useCallback(async () => {
+  try {
+    const uid = auth.currentUser?.uid;
+    const querySnapshot = await getDocs(collection(db, 'conta'));
+    const dados = [];
+    querySnapshot.forEach((doc) => {
+      const data = doc.data();
+      if (data.usuarioId === uid) {
+        dados.push({ id: doc.id, ...data });
+      }
+    });
+    setContas(dados);
+  } catch (error) {
+    console.error('Erro ao carregar contas:', error);
+  }
+}, []);
+const carregarEmprestimos = useCallback(async () => {
+  try {
+    const uid = auth.currentUser?.uid;
+    const querySnapshot = await getDocs(collection(db, 'emprestimo'));
+    const dados = [];
+    querySnapshot.forEach((doc) => {
+      const data = doc.data();
+      if (data.usuarioId === uid) {
+        dados.push({ id: doc.id, ...data });
+      }
+    });
+    setEmprestimos(dados);
+  } catch (error) {
+    console.error('Erro ao carregar empréstimos:', error);
+  }
+}, []);
+const carregarInvestimentos = useCallback(async () => {
+  try {
+    const uid = auth.currentUser?.uid;
+    const querySnapshot = await getDocs(collection(db, 'investimento'));
+    const dados = [];
+    querySnapshot.forEach((doc) => {
+      const data = doc.data();
+      if (data.usuarioId === uid) {
+        dados.push({ id: doc.id, ...data });
+      }
+    });
+    setInvestimentos(dados);
+  } catch (error) {
+    console.error('Erro ao carregar investimentos:', error);
+  }
+}, []);
+const handleDeletar = (id) => {
     
   };
 const handleEditar = (id) => {

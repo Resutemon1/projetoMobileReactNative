@@ -29,6 +29,7 @@ useEffect(() => {
 
     return () => unsubscribe(); // limpa o listener ao sair da tela
   }, []);
+  
 const abrirModal = (tipo) => {
   setTipoSelecionado(tipo);
   setModalVisible(true);
