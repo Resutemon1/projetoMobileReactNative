@@ -75,10 +75,10 @@ const carregarInvestimentos = useCallback(async () => {
     const uid = auth.currentUser?.uid;
     const querySnapshot = await getDocs(collection(db, 'investimento'));
     const dados = [];
-    querySnapshot.forEach((doc) => {
-      const data = doc.data();
+    querySnapshot.forEach((currentDoc) => {
+      const data = currentDoc.data();
       if (data.usuarioId === uid) {
-        dados.push({ id: doc.id, ...data });
+        dados.push({ id: currentDoc.id, ...data });
       }
     });
     setInvestimentos(dados);
@@ -86,11 +86,13 @@ const carregarInvestimentos = useCallback(async () => {
     console.error('Erro ao carregar investimentos:', error);
   }
 }, []);
- const handleDeletar = async (doc,id) => {
+ const handleDeletar = async (id) => {
   try{
     const ref = doc(db,'conta',id);
     await deleteDoc(ref)
+    setContas((prevContas) => prevContas.filter((item) => item.id !== id));
   }catch(error){
+
     console.error(error);
   }
     
@@ -113,7 +115,7 @@ const handleEditar = (id) => {
       keyExtractor={item => item.id}
       renderItem={({ item }) => (
         <ContaItem
-          contasId={item.id}
+          contaId={item.id}
           nome={item.nome}
           parcelas={item.parcelas}
           valor = {item.valor}
