@@ -26,7 +26,6 @@ export const estilo = StyleSheet.create({
   titulo: {
     fontSize: 40,
   },
-  scrollview: {},
   pressable: {
     justifyContent: 'center',
     alignItems: 'center',
@@ -104,5 +103,32 @@ layoutImage: {
 },
 imagem:{
   height: 75, width: 140, resizeMode: 'contain'
-}
+},
+itemContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
+  },
+legendaContainer:{
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
+},
+textoFlat: {
+    fontSize: 14,
+    flex:1
+  },
+tituloFlat: {
+    fontSize: 14,
+    paddingLeft:15
+  },
+iconsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: 70,
+  },
 });
