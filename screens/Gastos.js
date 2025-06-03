@@ -8,11 +8,16 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ContaItem from '../components/ContaItem';
 import { estilo } from '../assets/Estilo';
+import ModalEditarConta from '../components/ModalEditarConta';
 export default function Gastos({ navigation }) {
   const [salarios, setSalarios] = useState([]);
   const [contas, setContas] = useState([]);
   const [emprestimos, setEmprestimos] = useState([]);
   const [investimentos, setInvestimentos] = useState([]);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [tipoSelecionado, setTipoSelecionado] = useState(null);
+  const [modalEditarVisible, setModalEditarVisible] = useState(false);
+  const [contaSelecionada, setContaSelecionada] = useState(null);
 useFocusEffect(
   useCallback(() => {
     carregarSalarios();
@@ -21,6 +26,7 @@ useFocusEffect(
     carregarInvestimentos();
   }, [carregarSalarios, carregarContas, carregarEmprestimos, carregarInvestimentos])
 );
+
  const carregarSalarios = useCallback(async () => {
   try {
     const uid = auth.currentUser?.uid;
@@ -97,9 +103,11 @@ const carregarInvestimentos = useCallback(async () => {
   }
     
   };
-const handleEditar = (id) => {
-    
-    
+
+  const handleEditar = (id) => {
+    const itemSelecionado = contas.find((item) => item.id === id);
+    setContaSelecionada(itemSelecionado);
+    setModalEditarVisible(true);
   };
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -125,6 +133,12 @@ const handleEditar = (id) => {
         />
       )}
     />
+     <ModalEditarConta
+        visible={modalEditarVisible}
+        onClose={() => setModalEditarVisible(false)}
+        item={contaSelecionada}
+        onAtualizado={carregarContas}
+      />
       <Footer />
     </SafeAreaView>
   );

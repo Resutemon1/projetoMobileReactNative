@@ -119,12 +119,11 @@ const carregarInvestimentos = async () => {
       <ModalCadastro
         visible={modalVisible}
         onClose={() => setModalVisible(false)}
-         tipo={tipoSelecionado}
+        tipo={tipoSelecionado}
       />
       <View style={estilo.viewMenu}>
         <TouchableOpacity 
-        style = {
-          estilo.layoutImage}onPress={() => abrirModal('salario')}>
+        style = {estilo.layoutImage}onPress={() => abrirModal('salario')}>
           <Image
             style={estilo.imagem}
             source={{ uri: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1687950/capsule_616x353.jpg?t=1733297467' }}
