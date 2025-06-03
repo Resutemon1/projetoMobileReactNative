@@ -3,7 +3,7 @@ import{estilo} from '../assets/Estilo'
 export default function Footer() {
   return (
     <View style={estilo.footer}>
-      <Text>  Adeus</Text>
+      <Text>  Planejamento Financeiro</Text>
     </View>
   );
 }

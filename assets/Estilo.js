@@ -8,13 +8,13 @@ export const estilo = StyleSheet.create({
     backgroundColor: '#f5f5f5',
   },
   header: {
-    flex: 0.18,
+    flex: 0.4,
     justifyContent: 'center',
     alignItems: 'center',
   },
   footer: {
     flex: 0.1,
-    backgroundColor: 'yellow',
+    backgroundColor: 'lightgray',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -82,13 +82,15 @@ export const estilo = StyleSheet.create({
     marginTop: 30,
   },
   layoutImage: {
-    backgroundColor: '#1976D2',
+    backgroundColor: 'white',
     width: 140,
     height: 140,
     justifyContent: 'center',
     alignItems: 'center',
     margin: 10,
-    borderRadius: 10,
+    borderRadius: 20,
+    borderColor: 'black',
+    borderWidth:5
   },
   imagem:{
     height: 75, width: 140, resizeMode: 'contain'

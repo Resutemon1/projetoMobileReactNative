@@ -126,7 +126,7 @@ const carregarInvestimentos = async () => {
         style = {estilo.layoutImage}onPress={() => abrirModal('salario')}>
           <Image
             style={estilo.imagem}
-            source={{ uri: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1687950/capsule_616x353.jpg?t=1733297467' }}
+            source={{ uri: 'https://cdn-icons-png.flaticon.com/512/493/493389.png' }}
           />
           <Text >salario</Text>
         </TouchableOpacity>
@@ -134,7 +134,7 @@ const carregarInvestimentos = async () => {
           estilo.layoutImage} onPress={() => abrirModal('conta')}>
           <Image
             style={estilo.imagem}
-            source={{ uri: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1687950/capsule_616x353.jpg?t=1733297467' }}
+            source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQmlA6dVUlfr2yk_AEqBla_G1djJntKnsF3w&s' }}
           />
           <Text>conta</Text>
         </TouchableOpacity>
@@ -142,7 +142,7 @@ const carregarInvestimentos = async () => {
           estilo.layoutImage} onPress={() => abrirModal('emprestimo')}>
           <Image
             style={estilo.imagem}
-            source={{ uri: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1687950/capsule_616x353.jpg?t=1733297467' }}
+            source={{ uri: 'https://www.pngplay.com/wp-content/uploads/9/Loan-PNG-Photo-Image.png' }}
           />
           <Text> emprestimo</Text>
         </TouchableOpacity>
@@ -150,7 +150,7 @@ const carregarInvestimentos = async () => {
           estilo.layoutImage}onPress={() => abrirModal('investimento')}>
           <Image
             style={estilo.imagem}
-            source={{ uri: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1687950/capsule_616x353.jpg?t=1733297467' }}
+            source={{ uri: 'https://static.vecteezy.com/system/resources/previews/019/138/743/non_2x/investment-icon-for-your-website-design-logo-app-ui-free-vector.jpg' }}
           />
           <Text>investimento</Text>
         </TouchableOpacity>

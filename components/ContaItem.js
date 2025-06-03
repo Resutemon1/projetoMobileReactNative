@@ -2,7 +2,7 @@
 import { View, Text, TouchableOpacity, Alert, FlatList, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import { estilo } from '../assets/Estilo';
-export default function COntaItem({contaId, nome,parcelas,valor,vencimento, onEditar, onDeletar}) {
+export default function ContaItem({contaId, nome,parcelas,valor,vencimento, onEditar, onDeletar}) {
  
   return (
     <View style={estilo.itemContainer}>
